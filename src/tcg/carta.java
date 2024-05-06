@@ -4,9 +4,6 @@
  */
 package tcg;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  *
  * @author carlos
