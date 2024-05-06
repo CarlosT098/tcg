@@ -4,6 +4,7 @@
  */
 package tcg;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -15,8 +16,10 @@ public class Tcg {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        //declaração de variavel
         Random num = new Random();
+        Scanner teclado = new Scanner(System.in);
+        int controle = 0;
         
         carta baralho1[] = new carta[7];
         for(int i = 0; i <=6; i++){
@@ -29,12 +32,20 @@ public class Tcg {
             baralho2[i] = new carta(num.nextInt(6),num.nextInt(6),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10));
         //System.out.println(baralho2[i].toString());
         }
-        
-        for(int i = 0; i<=6; i++){
-            batalha luta = new batalha(baralho1[i], baralho2[i]);
-            System.out.println(luta.lutar());
+
+        while (controle <= 10) {
+            for (int i = 0; i <= 6; i++){
+                System.out.println("------------------------------------------");
+                System.out.println(baralho1[i].toString());                
+            }
+            System.out.print("Digite um numero: ");
+            controle = teclado.nextInt();
+
+            batalha luta[] = new batalha[7];
+            luta[0] = new batalha(baralho1[controle], baralho2[0]);
+            System.out.println(luta[0].lutar());
         }
-        
-    }
     
+}
+
 }

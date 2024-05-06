@@ -8,10 +8,16 @@ public class batalha {
     int atributo_luta;    
 
     public batalha(carta player, carta bot){
-        this.player = player;
-        this.bot = bot;
-        Random num = new Random();
-        atributo_luta = num.nextInt(5);
+
+        if (player.disponivel == false || bot.disponivel == false) {
+            System.out.println("escolha outra carta");
+        }else{
+            this.player = player;
+            this.bot = bot;
+            Random num = new Random();
+            atributo_luta = num.nextInt(5);
+        }
+        
     }
 
     public carta getPlayer() {
@@ -52,8 +58,10 @@ public class batalha {
                 if (player.forca == bot.forca) {
                     return "empate";
                 } else if (player.forca > bot.forca) {
+                    bot.setDisponivel(false);
                     return "player wins";
                 }else{
+                    player.setDisponivel(false);
                     return "bot wins";
                 }
             case 1:
@@ -102,4 +110,5 @@ public class batalha {
 
     }
     
+
 }
