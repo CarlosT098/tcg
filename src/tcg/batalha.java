@@ -8,16 +8,10 @@ public class batalha {
     int atributo_luta;    
 
     public batalha(carta player, carta bot){
-
-        if (player.disponivel == false || bot.disponivel == false) {
-            System.out.println("escolha outra carta");
-        }else{
             this.player = player;
             this.bot = bot;
             Random num = new Random();
             atributo_luta = num.nextInt(5);
-        }
-        
     }
 
     public carta getPlayer() {
@@ -44,7 +38,7 @@ public class batalha {
         this.atributo_luta = atributo_luta;
     }
 
-    public String lutar(){
+    public int lutar(){
 
         /*int forca; 
         int destreza;
@@ -56,56 +50,66 @@ public class batalha {
         switch (atributo_luta) {
             case 0:
                 if (player.forca == bot.forca) {
-                    return "empate";
+                    return 0;
                 } else if (player.forca > bot.forca) {
                     bot.setDisponivel(false);
-                    return "player wins";
+                    return 1;
                 }else{
                     player.setDisponivel(false);
-                    return "bot wins";
+                    return 2;
                 }
             case 1:
             if (player.destreza == bot.destreza) {
-                return "empate";
+                return 0;
                 } else if (player.destreza > bot.destreza) {
-                    return "player wins";
+                    bot.setDisponivel(false);
+                    return 1;
                 }else{
-                    return "bot wins";
+                    player.setDisponivel(false);
+                    return 2;
                 }
             case 2:
                 if (player.constituicao == bot.constituicao) {
-                    return "empate";
+                    return 0;
                 } else if (player.constituicao > bot.constituicao) {
-                    return "player wins";
+                    bot.setDisponivel(false);
+                    return 1;
                 } else {
-                    return "bot wins";
+                    player.setDisponivel(false);
+                    return 2;
                 }
             case 3:
                 if (player.inteligencia == bot.inteligencia) {
-                    return "empate";
+                    return 0;
                 } else if (player.inteligencia > bot.inteligencia) {
-                    return "player wins";
+                    bot.setDisponivel(false);
+                    return 1;
                 } else {
-                    return "bot wins";
+                    player.setDisponivel(false);
+                    return 2;
                 }
             case 4:
                 if (player.sabedoria == bot.sabedoria) {
-                    return "empate";
+                    return 0;
                 } else if (player.sabedoria > bot.sabedoria) {
-                    return "player wins";
+                    bot.setDisponivel(false);
+                    return 1;
                 } else {
-                    return "bot wins";
+                    player.setDisponivel(false);
+                    return 2;
                 }
             case 5:
                 if (player.carisma == bot.carisma) {
-                    return "empate";
+                    return 0;
                 } else if (player.carisma > bot.carisma) {
-                    return "player wins";
+                    bot.setDisponivel(false);
+                    return 1;
                 } else {
-                    return "bot wins";
+                    player.setDisponivel(false);
+                    return 2;
                 }
             default:
-                return "atributo inválido";
+                return 0;
         }
 
     }
