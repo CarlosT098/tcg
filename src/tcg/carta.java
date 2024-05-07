@@ -32,6 +32,7 @@ public class carta {
     int carisma;
     boolean disponivel;
 
+    //construtor
     public carta(int raca, int classe, int forca, int destreza, int constituicao, int inteligencia, int sabedoria, int carisma) {
         this.raca = raca;
         this.classe = classe;
@@ -42,7 +43,7 @@ public class carta {
         this.sabedoria = sabedoria;
         this.carisma = carisma;
         this.disponivel = true;
-        switch (raca){
+        switch (raca){ //de acordo com a raca da carta certos atributos aumentam
             case 1 -> this.carisma *= 2;         
             case 2 -> this.destreza *= 2;
             case 3 -> this.constituicao *=2;
@@ -50,7 +51,7 @@ public class carta {
             case 5 -> this.inteligencia *=2;
             case 6 -> this.sabedoria *=2;
         } 
-        switch (classe){
+        switch (classe){ //de acordo com a classe da carta certos atributos aumentam
             case 1 -> this.forca *=2;
             case 2 -> this.destreza *=2;
             case 3 -> this.inteligencia *= 2;
@@ -59,6 +60,7 @@ public class carta {
             case 6 -> this.constituicao *= 2;
         }
         
+        //definir o nome da carta de acordo com a raca e classe da carta
         int temp = raca*10 + classe;
         switch(temp){
             case 11: this.nome = "Guts";break;
@@ -102,6 +104,7 @@ public class carta {
         
     }
 
+    //getters e setters 
     public String getNome() {
         return nome;
     }
@@ -182,6 +185,7 @@ public class carta {
         this.disponivel = disponivel;
     }
 
+    //metodo para mostar os dados da carta
     @Override
     public String toString() {
         return "carta{" + "nome=" + nome + ", raca=" + raca + ", classe=" + classe + ", forca=" + forca + ", destreza=" + destreza + ", constituicao=" + constituicao + ", inteligencia=" + inteligencia + ", sabedoria=" + sabedoria + ", carisma=" + carisma + ", disponivel=" + disponivel + '}';

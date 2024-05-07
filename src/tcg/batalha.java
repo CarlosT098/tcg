@@ -7,6 +7,7 @@ public class batalha {
     carta bot;
     int atributo_luta;    
 
+    //construtor
     public batalha(carta player, carta bot){
             this.player = player;
             this.bot = bot;
@@ -14,6 +15,7 @@ public class batalha {
             atributo_luta = num.nextInt(5);
     }
 
+    //getters e setters
     public carta getPlayer() {
         return player;
     }
@@ -38,6 +40,7 @@ public class batalha {
         this.atributo_luta = atributo_luta;
     }
 
+    //metodo de luta, verifica qual carta tem o maior atributo 
     public int lutar(){
 
         /*int forca; 
