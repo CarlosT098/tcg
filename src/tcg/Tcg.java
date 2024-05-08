@@ -1,22 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package tcg;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 
-/**
- *
- * @author carlos
- */
 public class Tcg {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-
+        /* 
         //declaração de variavel
         Random num = new Random();
         Scanner teclado = new Scanner(System.in);
@@ -180,8 +171,18 @@ public class Tcg {
             }
             
         }
+
+        */
+
+        //adicionar interface grafica swing    
+
+        RadioButton radioButtonFrame = new RadioButton();
+        radioButtonFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        radioButtonFrame.setSize( 350, 100 );
+        radioButtonFrame.setVisible( true );
+
             
     }
-    
+        
 }
 
