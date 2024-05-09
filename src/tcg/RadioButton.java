@@ -10,36 +10,38 @@ import javax.swing.JOptionPane;
 
 
 public class RadioButton extends JFrame {
- private JRadioButton java,
-        csharp;
+ private JRadioButton c1,
+        c2;
  private JLabel myLabel;
  private RadioButtonHandler handler;
+
+ 
  
  public RadioButton(){
-  super("Radio Buttons - JavaProgressivo.net");
+  super("tcg");
   setLayout( new FlowLayout() );
   handler = new RadioButtonHandler();
   
-  myLabel = new JLabel("Qual a melhor linguagem de programação?");
-  java = new JRadioButton("Java", false);
-  csharp = new JRadioButton("C#", false);
+  myLabel = new JLabel("Escolha a sua carta");
+  c1 = new JRadioButton("carta 1", false);
+  c2 = new JRadioButton("carta 2", false);
   
   add(myLabel);
-  add(java);
-  add(csharp);
+  add(c1);
+  add(c2);
 
-  java.addItemListener(handler);
-  csharp.addItemListener(handler);
+  c1.addItemListener(handler);
+  c2.addItemListener(handler);
  }
  
  private class RadioButtonHandler implements ItemListener{
 
   @Override
   public void itemStateChanged(ItemEvent event) {
-   if(java.isSelected())
-    JOptionPane.showMessageDialog(null,"Parabéns, você é o cara");
-   if(csharp.isSelected())
-    JOptionPane.showMessageDialog(null,"Sabe de nada, inocente!");
+   if(c1.isSelected())
+    JOptionPane.showMessageDialog(null,"carta 1");
+   if(c2.isSelected())
+    JOptionPane.showMessageDialog(null,"carta 2");
   }
   
  }
