@@ -178,7 +178,7 @@ public class Tcg {
 
         RadioButton radioButtonFrame = new RadioButton();
         radioButtonFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        radioButtonFrame.setSize( 400, 100 );
+        radioButtonFrame.setSize( 1000, 400 );
         radioButtonFrame.setVisible( true );
 
             
