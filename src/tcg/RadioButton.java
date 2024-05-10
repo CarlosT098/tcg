@@ -26,6 +26,16 @@ public class RadioButton extends JFrame {
        carta baralho1[] = new carta[7];
        carta baralho2[] = new carta[7];
 
+public void verficacao(int n){
+       if (pontos >= 7) {
+              JOptionPane.showMessageDialog(null, "Bot wins");
+       }else if (carta_bot >= 8) {
+              JOptionPane.showMessageDialog(null, "player wins");
+       }else{
+              porrada(n);
+       }
+}
+
 public int resultado_da_luta(int atributo, int carta){
        switch(atributo){
               case 0:
@@ -97,7 +107,7 @@ public RadioButton(){
               baralho2[i] = new carta(num.nextInt(6),num.nextInt(6),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10));
        }
        
-       myLabel = new JLabel("Escolha a sua carta");
+       myLabel = new JLabel("Escolha a sua carta \n");
        c1 = new JRadioButton(baralho1[0].toString(), false);
        c2 = new JRadioButton(baralho1[1].toString(), false);
        c3 = new JRadioButton(baralho1[2].toString(), false);
@@ -130,25 +140,25 @@ private class RadioButtonHandler implements ItemListener{
 @Override
 public void itemStateChanged(ItemEvent event) {
        if(c1.isSelected())
-              porrada(0);
+              verficacao(0);            
     
        if(c2.isSelected())
-              porrada(1);
+              verficacao(1);
     
        if(c3.isSelected())
-              porrada(2);
+              verficacao(2);
     
        if(c4.isSelected())
-              porrada(3);
+              verficacao(3);
     
        if(c5.isSelected())
-              porrada(4);
+              verficacao(4);
     
        if(c6.isSelected())
-              porrada(5);
+              verficacao(5);
     
        if(c7.isSelected())
-              porrada(6);
+              verficacao(6);
    
        }
   
