@@ -1,5 +1,6 @@
 package tcg;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import java.awt.FlowLayout;
@@ -7,18 +8,17 @@ import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Random;
-import java.util.Scanner;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-
-public class RadioButton extends JFrame {
+public class tela_batalha extends JFrame {
        private JRadioButton c1,c2, c3, c4, c5, c6, c7;
-       private JLabel myLabel, b1, b2,b3,b4,b5,b6,b7;
+       private JLabel label_player, b1, b2,b3,b4,b5,b6,b7, label_bot;
        private RadioButtonHandler handler;
+       JButton bta = new JButton("voltar");
+
        Random num = new Random();
-       Scanner teclado = new Scanner(System.in);
        int controle = 0; //numero digitado pelo usuario
        int carta_bot = 0; //usado para o bot mudar de carta 
        int pontos = 0; //numero de cartas que o player perdeu
@@ -27,12 +27,20 @@ public class RadioButton extends JFrame {
        carta baralho1[] = new carta[7];
        carta baralho2[] = new carta[7];
 
-public void verficacao(int n){
+public boolean check(){
        if (pontos >= 7) {
               JOptionPane.showMessageDialog(null, "Bot wins");
+              return false;
        }else if (carta_bot >= 7) {
               JOptionPane.showMessageDialog(null, "player wins");
+              return false;
        }else{
+              return true;              
+       }       
+}
+
+public void verficacao(int n){
+       if(check()){
               porrada(n);
        }
 }
@@ -45,13 +53,22 @@ public int resultado_da_luta(int atributo, int carta){
                               
               case 1:
                      JOptionPane.showMessageDialog(null, "Player + 1 ");
-                     carta_bot ++;
+                     baralho2[carta_bot].disponivel = false;
+                     apagar_bot(carta_bot);
+                     carta_bot ++;   
+                     repaint();                  
+                     revalidate();
+                     check();
                      return 1;                      
                               
               default:
                      JOptionPane.showMessageDialog(null, "bot +1");
                      baralho1[carta].disponivel = false;
                      pontos ++;
+                     apagar_player(carta);
+                     repaint();
+                     revalidate();
+                     check();
                      return 0;
        }
        
@@ -98,7 +115,63 @@ public void porrada(int n){
        }
 }
 
-public RadioButton(){       
+public void apagar_bot(int n){
+       switch (n) {
+              case 0:
+                     remove(b1);
+                     break;
+
+              case 1:
+                     remove(b2);
+                     break;
+              
+              case 2:
+                     remove(b3);
+                     break;
+                     
+              case 3:
+                     remove(b4);
+                     break;
+              case 4:
+                     remove(b5);
+                     break;
+              case 5:
+                     remove(b6);
+                     break;
+              case 6:
+                     remove(b7);
+                     break;
+       }
+}
+
+public void apagar_player(int n){
+       switch (n) {
+              case 0:
+                  remove(c1);
+                  break;
+              case 1:
+                  remove(c2);
+                  break;
+              case 2:
+                  remove(c3);
+                  break;
+              case 3:
+                  remove(c4);
+                  break;
+              case 4:
+                  remove(c5);
+                  break;
+              case 5:
+                  remove(c6);
+                  break;
+              case 6:
+                  remove(c7);
+                  break;
+          }
+          
+}
+
+public tela_batalha(){       
        super("tcg");
        setLayout( new FlowLayout() );
        handler = new RadioButtonHandler();
@@ -107,7 +180,9 @@ public RadioButton(){
               baralho1[i] = new carta(num.nextInt(6),num.nextInt(6),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10));
               baralho2[i] = new carta(num.nextInt(6),num.nextInt(6),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10));
        }
-       
+
+
+       label_bot = new JLabel("Cartas do bot");
        b1 = new JLabel(baralho2[0].toString());
        b2 = new JLabel(baralho2[1].toString());
        b3 = new JLabel(baralho2[2].toString());
@@ -116,7 +191,7 @@ public RadioButton(){
        b6 = new JLabel(baralho2[5].toString());
        b7 = new JLabel(baralho2[6].toString());
 
-       myLabel = new JLabel("Escolha a sua carta \n");       
+       label_player = new JLabel("Escolha a sua carta \n");       
        c1 = new JRadioButton(baralho1[0].toString(), false);
        c2 = new JRadioButton(baralho1[1].toString(), false);
        c3 = new JRadioButton(baralho1[2].toString(), false);
@@ -125,6 +200,7 @@ public RadioButton(){
        c6 = new JRadioButton(baralho1[5].toString(), false);
        c7 = new JRadioButton(baralho1[6].toString(), false);
        
+       add(label_bot);
        add(b1);
        add(b2);
        add(b3);
@@ -132,7 +208,7 @@ public RadioButton(){
        add(b5);
        add(b6);
        add(b7);
-       add(myLabel);
+       add(label_player);
        add(c1);
        add(c2);
        add(c3);
@@ -140,6 +216,7 @@ public RadioButton(){
        add(c5);
        add(c6);
        add(c7);
+       add(bta);
 
 
        c1.addItemListener(handler);
@@ -150,6 +227,14 @@ public RadioButton(){
        c6.addItemListener(handler);
        c7.addItemListener(handler);
 
+       bta.addActionListener(e -> {
+              setVisible(false);
+              tela_principal p = new tela_principal();
+              p.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+
+              
+          });  
+
        setLayout(new GridLayout(20,1));
        setSize(getPreferredSize());
  }
@@ -159,9 +244,7 @@ private class RadioButtonHandler implements ItemListener{
 @Override
 public void itemStateChanged(ItemEvent event) {
        if(c1.isSelected())
-              verficacao(0);
-              remove(b1);
-              revalidate();      
+              verficacao(0);                   
     
        if(c2.isSelected())
               verficacao(1);
@@ -179,10 +262,10 @@ public void itemStateChanged(ItemEvent event) {
               verficacao(5);
     
        if(c7.isSelected())
-              verficacao(6);
-   
+              verficacao(6);   
        }
   
 }
 
 }
+
