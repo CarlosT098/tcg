@@ -3,6 +3,7 @@ package tcg;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.Random;
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class RadioButton extends JFrame {
        private JRadioButton c1,c2, c3, c4, c5, c6, c7;
-       private JLabel myLabel;
+       private JLabel myLabel, b1, b2,b3,b4,b5,b6,b7;
        private RadioButtonHandler handler;
        Random num = new Random();
        Scanner teclado = new Scanner(System.in);
@@ -29,7 +30,7 @@ public class RadioButton extends JFrame {
 public void verficacao(int n){
        if (pontos >= 7) {
               JOptionPane.showMessageDialog(null, "Bot wins");
-       }else if (carta_bot >= 8) {
+       }else if (carta_bot >= 7) {
               JOptionPane.showMessageDialog(null, "player wins");
        }else{
               porrada(n);
@@ -97,7 +98,7 @@ public void porrada(int n){
        }
 }
 
-public RadioButton(){
+public RadioButton(){       
        super("tcg");
        setLayout( new FlowLayout() );
        handler = new RadioButtonHandler();
@@ -107,7 +108,15 @@ public RadioButton(){
               baralho2[i] = new carta(num.nextInt(6),num.nextInt(6),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10),num.nextInt(10));
        }
        
-       myLabel = new JLabel("Escolha a sua carta \n");
+       b1 = new JLabel(baralho2[0].toString());
+       b2 = new JLabel(baralho2[1].toString());
+       b3 = new JLabel(baralho2[2].toString());
+       b4 = new JLabel(baralho2[3].toString());
+       b5 = new JLabel(baralho2[4].toString());
+       b6 = new JLabel(baralho2[5].toString());
+       b7 = new JLabel(baralho2[6].toString());
+
+       myLabel = new JLabel("Escolha a sua carta \n");       
        c1 = new JRadioButton(baralho1[0].toString(), false);
        c2 = new JRadioButton(baralho1[1].toString(), false);
        c3 = new JRadioButton(baralho1[2].toString(), false);
@@ -115,7 +124,14 @@ public RadioButton(){
        c5 = new JRadioButton(baralho1[4].toString(), false);
        c6 = new JRadioButton(baralho1[5].toString(), false);
        c7 = new JRadioButton(baralho1[6].toString(), false);
-  
+       
+       add(b1);
+       add(b2);
+       add(b3);
+       add(b4);
+       add(b5);
+       add(b6);
+       add(b7);
        add(myLabel);
        add(c1);
        add(c2);
@@ -133,6 +149,9 @@ public RadioButton(){
        c5.addItemListener(handler);
        c6.addItemListener(handler);
        c7.addItemListener(handler);
+
+       setLayout(new GridLayout(20,1));
+       setSize(getPreferredSize());
  }
  
 private class RadioButtonHandler implements ItemListener{
@@ -140,7 +159,9 @@ private class RadioButtonHandler implements ItemListener{
 @Override
 public void itemStateChanged(ItemEvent event) {
        if(c1.isSelected())
-              verficacao(0);            
+              verficacao(0);
+              remove(b1);
+              revalidate();      
     
        if(c2.isSelected())
               verficacao(1);

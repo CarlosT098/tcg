@@ -174,13 +174,13 @@ public class Tcg {
 
         */
 
+      
         //adicionar interface grafica swing    
-
         RadioButton radioButtonFrame = new RadioButton();
         radioButtonFrame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
         radioButtonFrame.setSize( 1000, 400 );
         radioButtonFrame.setVisible( true );
-
+       
             
     }
         
