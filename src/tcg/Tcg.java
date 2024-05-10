@@ -1,9 +1,5 @@
 package tcg;
-import java.util.Random;
-import java.util.Scanner;
 import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
 
 public class Tcg {
     public static void main(String[] args) {
@@ -179,7 +175,7 @@ public class Tcg {
         //tela inicial
         tela_principal p = new tela_principal();
         p.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-        
+
         //tela de batalha 
         /* 
         RadioButton radioButtonFrame = new RadioButton();
