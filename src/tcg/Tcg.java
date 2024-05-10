@@ -179,7 +179,7 @@ public class Tcg {
         //tela inicial
         tela_principal p = new tela_principal();
         p.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-
+        
         //tela de batalha 
         /* 
         RadioButton radioButtonFrame = new RadioButton();
